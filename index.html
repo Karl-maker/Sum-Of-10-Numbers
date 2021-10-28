@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Adding Game</title>
+</head>
+<body>
+    <script>
+        let numbers = [];
+        function addNumbers(){
+           //Get 10 numbers then add then
+            let main_input = document.getElementById("main-input");
+            let main_display = document.getElementById("main-display");
+            let left_over;
+            let input; 
+            
+            input = parseInt(main_input.value, 10);
+            main_input.value = "";
+
+           if(!isNaN(input)){
+
+                //Add number to array
+
+                numbers.push(input);
+                console.log(numbers);
+                left_over = 10 - numbers.length;
+                main_display.innerHTML = `Enter ${left_over} more numbers`;
+
+                if(numbers.length === 10){
+                    let sum = 0;
+
+                    for (let i = 0; i < numbers.length; i++) {
+                        sum += numbers[i];
+                    }
+
+                    if (sum % 2 == 0) {
+                        main_display.innerHTML = `Total of all your numbers is ${sum} which is a even number`;
+                    }else{
+                        main_display.innerHTML = `Total of all your numbers is ${sum} which is a odd number`;
+                    }
+                   
+                    numbers = [];
+                }
+                
+        
+            } else {
+                main_display.innerHTML = `Please enter numbers only...`
+            }
+
+
+        }
+    </script>
+    <div class="main-content">
+        <h1 id="main-display">Enter 10 numbers to get the total sum</h1>
+        <p>Enter a number here <input type="text" id="main-input" name="number-input"> then click <button onClick = addNumbers()>here</button></p> 
+    </div>
+    
+</body>
+</html>
